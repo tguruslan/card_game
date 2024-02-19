@@ -1,0 +1,98 @@
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+    <meta charset="UTF-8">
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+    <title>samuraqua</title>
+ </head>
+ <body>
+    <style>
+        @import url('https://fonts.cdnfonts.com/css/college');
+        .cards{
+            display: grid;
+            grid-template-columns: repeat(10, 1fr);
+            grid-template-rows: repeat(11, 1fr);
+        }
+        .card{
+            border-radius: 10px;
+            border: 1px solid black;
+            position: relative;
+            margin: 3px;
+            height: 15.3vw;
+            box-sizing: border-box;
+            background-size: contain;
+        }
+        .number {
+            left: 10%;
+            top: 7%;
+            display: block;
+            position: absolute;
+            font-size: 2.3vw;
+            font-weight: 900;
+            -webkit-text-stroke: 1px white;
+            color: rgb(0, 0, 0);
+            font-family: 'College', sans-serif;
+        }
+        .upsidedown{
+            transform: rotate(180deg);
+            right: 10%;
+            bottom: 7%;
+        }
+        .penalty {
+            position: absolute;
+            display: grid;
+            top: 7%;
+            right: 10%;
+            align-items: center;
+            grid-template-columns: repeat(1, 1fr);
+            grid-template-rows: repeat(4, 1fr);
+        }
+        .penalty div {
+            display: block;
+            width: 1vw;
+            height: 1vw;
+            border: 1px solid white;
+            background-size: contain;
+            background-image: url(0.jpeg);
+            border-radius: 50%;
+            margin: 0 auto;
+        }
+        .card-one  {background-image: url(1.jpeg);}
+        .card-two  {background-image: url(2.jpeg);}
+        .card-three{background-image: url(3.jpeg);}
+        .card-four {background-image: url(4.jpeg);}
+    </style>
+    <script>
+        (function($){
+            $(document).on('ready', function(){
+                for(i = 1;i <= 110; i++){
+                    if(i % 10 == 0){
+                        penalty="three";
+                        penalty_html="<div></div><div></div><div></div>";
+                    } else if(i % 11 == 0){
+                        penalty="four";
+                        penalty_html="<div></div><div></div><div></div><div></div>";
+                    }else if(i.toString().split("").slice(-1) == 5){
+                        penalty="two";
+                        penalty_html="<div></div><div></div>";
+                    }else{
+                        penalty="one";
+                        penalty_html="<div></div>";
+                    }
+
+                    $(document).find('.cards').append(
+                        '<div class="card card-'+penalty+'">'+
+                            '<span class="number">'+i+'</span>'+
+                            '<span class="number upsidedown">'+i+'</span>'+
+                            '<span class="penalty">'+penalty_html+'</span>'+
+                        '</div>'
+                    );
+                }
+            });
+        })(jQuery);
+    </script>
+
+    <div class="cards">
+    </div>
+ </body>
+ </html>
